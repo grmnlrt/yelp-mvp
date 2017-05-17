@@ -1,0 +1,62 @@
+<h1><%= @restaurant.name %></h1>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th colspan="2">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Address</td>
+        <td><%= @restaurant.address %></td>
+      </tr>
+      <tr>
+        <td>Phone Number</td>
+        <td><%= @restaurant.phone_number %></td>
+      </tr>
+      <tr>
+        <td>Category</td>
+        <td><%= @restaurant.category.capitalize %></td>
+      </tr>
+      <td>Average</td>
+        <td>
+          <% if @restaurant.average.is_a? Integer %>
+            <% @restaurant.average.times do %>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            <% end %>
+            <% (5 - @restaurant.average).times do %>
+              <i class="fa fa-star-o" aria-hidden="true"></i>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<hr>
+<h2><%= @restaurant.reviews.length == 1 ? "Review" : "Reviews" %></h2>
+<ul class="list-group">
+  <% @restaurant.reviews.each do |review|%>
+    <li class="list-group-item">
+      <span class="star">
+        <% review.rating.times do %>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        <% end %>
+        <% (5 - review.rating).times do %>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+        <% end %>
+      </span>
+      <%= review.content %>
+    </li>
+  <% end %>
+</ul>
+<hr>
+<h2>Add a review</h2>
+  <%= simple_form_for [@restaurant, @review] do |f| %>
+    <%= f.input :content %>
+    <%= f.input :rating, collection: 0..5 %>
+    <%= f.submit class: "btn btn-secondary"%>
+  <% end %>
+<hr>
+<%= link_to "Go back", root_path, class: 'navbar-wagon-item navbar-wagon-button btn' %>

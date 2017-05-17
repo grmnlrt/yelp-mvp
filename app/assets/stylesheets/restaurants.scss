@@ -1,0 +1,23 @@
+// Place all the styles related to the restaurants controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.list-group-item .star {
+    margin-right: 20px;
+}
+
+form .btn-secondary {
+  background: white;
+  border: 2px solid $brand-color;
+}
+
+form abbr[title] {
+    color: #db4c3d;
+    border-bottom: 0;
+    cursor: inherit;
+    text-decoration: none;
+}
+
+i.fa.fa-star, i.fa.fa-star-o {
+    color: $brand-color;
+}
